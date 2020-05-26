@@ -11,6 +11,7 @@ class ArticleTest extends TestCase
 {
     use RefreshDatabase;
 
+    // 引数がnullのケース
     public function testIsLikedByNull()
     {
         $article = factory(Article::class)->create();
