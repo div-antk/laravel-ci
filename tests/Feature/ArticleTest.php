@@ -37,4 +37,19 @@ class ArticleTest extends TestCase
         // 引数がtrueかどうかをテストする
         $this->assertTrue($result);
     }
+
+    // いいねをしていないケース
+    public function testIsLikedByAnother()
+    {
+        $article = factory(Article::class)->create();
+        $user = factory(User::class)->create();
+        $another = factory(User::class)->create();
+
+        // 他人が記事にいいねをする
+        $article->likes()->attach($another);
+
+        $result = $article->isLikedBy($user);
+
+        $this->assertFalse($result);
+    }
 }
